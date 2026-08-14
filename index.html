@@ -367,4 +367,590 @@
                     <div class="nc-title">GAME BOOST & MOD ENGINE SIMULATOR</div>
                     <div class="nc-desc">Simulasi konfigurasi mod & injeksi fitur boost permainan.</div>
                     <div class="nc-open">BUKA MODUL &rarr;</div>
-           
+                </div>
+                <div class="nav-card" onclick="showPage('page-monitor')">
+                    <span class="nc-icon">🖥️</span>
+                    <div class="nc-title">PERFORMANCE & DEVICE MONITOR</div>
+                    <div class="nc-desc">Uptime, spesifikasi perangkat, dan console log sistem secara langsung.</div>
+                    <div class="nc-open">BUKA MODUL &rarr;</div>
+                </div>
+            </div>
+
+            <div class="section-label">// QUICK LINKS</div>
+            <div class="card">
+                <div class="tools-grid">
+                    <a href="https://www.tiktok.com/@xmlridzz31mart?_r=1&_t=ZS-98qkpznkbRq" target="_blank" rel="noopener" class="tool-box">
+                        <span style="color:var(--neon-blue)">🎵</span>
+                        <div>TikTok</div>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb6rPOiCnA7xJja22q0E" target="_blank" rel="noopener" class="tool-box">
+                        <span style="color:var(--terminal-green)">💬</span>
+                        <div>Saluran WA</div>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener" class="tool-box">
+                        <span style="color:var(--accent-red)">▶️</span>
+                        <div>YouTube</div>
+                    </a>
+                </div>
+            </div>
+
+            <footer>
+                <div style="margin-bottom: 5px;">© 2026 XMLRIDZZ. All rights reserved.</div>
+                <div style="color: var(--accent-red); font-weight: bold;">KEEP CODING. KEEP LEARNING. NEVER STOP.</div>
+            </footer>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: TWEAKS & SENSITIVITY -->
+        <!-- =============================== -->
+        <div class="page" id="page-tweaks">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">🚀</span> TWEAKS & SENSITIVITY</div>
+
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-info">
+                        <h3>🖱️ Mouse Tweaks</h3>
+                        <p>Konfigurasi sensitivitas pointer instan untuk kontrol licin.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="check-mouse" onchange="toggleCardContent('mouse-content', this)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div id="mouse-content" class="collapsible-content">
+                    <span class="level-label">Mode Mouse Tweaks:</span>
+                    <div class="mode-grid-5">
+                        <button class="btn-mode" onclick="setActiveInGroup('#mouse-content .btn-mode', this)">Low</button>
+                        <button class="btn-mode" onclick="setActiveInGroup('#mouse-content .btn-mode', this)">Standar</button>
+                        <button class="btn-mode" onclick="setActiveInGroup('#mouse-content .btn-mode', this)">High</button>
+                        <button class="btn-mode active" onclick="setActiveInGroup('#mouse-content .btn-mode', this)">Ultra</button>
+                        <button class="btn-mode" onclick="setActiveInGroup('#mouse-content .btn-mode', this)">Super</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-info">
+                        <h3>🏃 Sensitivity Definition</h3>
+                        <p>Optimalkan parameter input-response untuk kestabilan arah bidik.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="check-sens" onchange="toggleCardContent('sens-content', this)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div id="sens-content" class="collapsible-content">
+                    <span class="level-label">Sensitivity Level:</span>
+                    <div class="level-grid-6">
+                        <button class="btn-lvl" onclick="setActiveInGroup('#sens-content .btn-lvl', this)">1</button>
+                        <button class="btn-lvl" onclick="setActiveInGroup('#sens-content .btn-lvl', this)">2</button>
+                        <button class="btn-lvl active" onclick="setActiveInGroup('#sens-content .btn-lvl', this)">3</button>
+                        <button class="btn-lvl" onclick="setActiveInGroup('#sens-content .btn-lvl', this)">4</button>
+                        <button class="btn-lvl" onclick="setActiveInGroup('#sens-content .btn-lvl', this)">5</button>
+                        <button class="btn-lvl" onclick="setActiveInGroup('#sens-content .btn-lvl', this)">6</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-info">
+                        <h3>👆 Touch Manager</h3>
+                        <p>Menghilangkan delay sentuhan dan memaksimalkan respon layar.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="check-touch" onchange="toggleCardContent('touch-content', this)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div id="touch-content" class="collapsible-content">
+                    <div class="range-container">
+                        <div class="range-header"><span>Single Touch Response</span><span id="val-single">Ultra</span></div>
+                        <input type="range" min="1" max="5" value="5" oninput="updateTouchSpeed(this.value, 'val-single')">
+                    </div>
+                    <div class="range-container">
+                        <div class="range-header"><span>Multi Touch Response</span><span id="val-multi">Ultra</span></div>
+                        <input type="range" min="1" max="5" value="5" oninput="updateTouchSpeed(this.value, 'val-multi')">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: FPS BOOSTER -->
+        <!-- =============================== -->
+        <div class="page" id="page-fps">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">⚡</span> ULTRA FPS BOOSTER & OVERCLOCK</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span>⚡</span> ENGINE STATUS
+                    <span id="fps-status" class="badge" style="background:#222; padding:2px 6px; font-size:0.6rem;">DEFAULT</span>
+                </div>
+
+                <div class="fps-display-box">
+                    <div style="font-size:0.6rem; color:var(--text-muted); margin-bottom:4px;">REALTIME ESTIMATED FPS</div>
+                    <div class="fps-num"><span id="fps-val">60</span> <span style="font-size:1rem; color:#888;">FPS</span></div>
+                </div>
+
+                <div style="font-size:0.65rem; color:#aaa; margin-bottom:6px;">SELECT TARGET FRAME RATE:</div>
+                <div class="fps-mode-selector">
+                    <button class="btn-fps active" onclick="selectFPS(60, this)">60 FPS</button>
+                    <button class="btn-fps" onclick="selectFPS(90, this)">90 FPS</button>
+                    <button class="btn-fps" onclick="selectFPS(120, this)">120 FPS</button>
+                    <button class="btn-fps" onclick="selectFPS(144, this)">144 MAX</button>
+                </div>
+
+                <button class="btn-act" id="btn-fps-boost" style="background:var(--neon-blue); color:#000;" onclick="boostFPS()">BOOST & UNLOCK MAX FPS</button>
+                <div class="terminal-box" id="fps-log" style="height:45px; margin-top:8px;">[ FPS Engine Ready ]</div>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: MOD ENGINE -->
+        <!-- =============================== -->
+        <div class="page" id="page-mod">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">🎯</span> GAME BOOST & MOD ENGINE SIMULATOR</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span>🎯</span> MOD CONFIGURATION
+                    <span id="cheat-status" class="badge" style="background:#222; padding:2px 6px; font-size:0.6rem;">OFFLINE</span>
+                </div>
+
+                <div class="mod-grid">
+                    <label class="mod-item">
+                        <span>🎯 AimLock Target Assist</span>
+                        <input type="checkbox" id="c1" checked onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>⚡ Ultra FPS Mode Simulation</span>
+                        <input type="checkbox" id="c2" checked onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>🌐 Ping Stabilizer Bypass</span>
+                        <input type="checkbox" id="c3" checked onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>👻 Hologram Overlay Simulator</span>
+                        <input type="checkbox" id="c4" onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>📡 Touch Response Optimizer</span>
+                        <input type="checkbox" id="c5" onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>🛡️ Anti-Lag Memory Purge</span>
+                        <input type="checkbox" id="c6" checked onchange="updateMod()">
+                    </label>
+                </div>
+
+                <div style="margin-bottom:12px; background:rgba(20, 10, 30, 0.6); padding:10px; border:1px solid rgba(168, 85, 247, 0.3); box-shadow: inset 0 0 8px rgba(168, 85, 247, 0.08);">
+                    <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#aaa; margin-bottom:5px;">
+                        <span>AIM ASSIST FOV RATIO</span>
+                        <span id="fov-val" style="color:#7dd3fc; font-weight:bold; text-shadow: 0 0 8px rgba(125, 211, 252, 0.4);">90%</span>
+                    </div>
+                    <input type="range" id="fov-slider" min="10" max="100" value="90" style="width:100%; accent-color:var(--accent-red);" oninput="document.getElementById('fov-val').innerText = this.value + '%'">
+                </div>
+
+                <button class="btn-act" id="btn-mod-exec" onclick="injectMod()">EXECUTE BOOST & INJECTION</button>
+                <div class="terminal-box" id="mod-log" style="height:45px; margin-top:8px;">[ Mod Engine Waiting... ]</div>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: PERFORMANCE MONITOR -->
+        <!-- =============================== -->
+        <div class="page" id="page-monitor">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">🖥️</span> PERFORMANCE & DEVICE MONITOR</div>
+
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-header"><span>📊</span> PERFORMANCE MONITOR</div>
+                    <div class="perf-line"></div>
+                    <div class="stat-row"><span>UPTIME</span><b id="val-uptime">00h 00m 00s</b></div>
+                    <div class="stat-row"><span>CPU THREADS</span><b id="val-cores">Detecting...</b></div>
+                    <div class="stat-row"><span>ORIENTATION</span><b id="val-orient">Portrait</b></div>
+                    <div class="stat-row"><span>NETWORK</span><b id="val-network" style="color:var(--terminal-green)">ONLINE</b></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><span>📱</span> YOUR DEVICE INFO</div>
+                    <div class="stat-row"><span>PLATFORM</span><b id="dev-platform" style="color:var(--neon-blue)">Detecting...</b></div>
+                    <div class="stat-row"><span>BROWSER</span><b id="dev-browser">Detecting...</b></div>
+                    <div class="stat-row"><span>RESOLUTION</span><b id="dev-res">0x0</b></div>
+                    <div class="stat-row"><span>COLOR DEPTH</span><b id="dev-color">24-bit</b></div>
+                    <div class="stat-row"><span>SYSTEM STATE</span><b style="color:var(--terminal-green)">OPTIMAL</b></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><span>🖥️</span> SYSTEM CONSOLE</div>
+                    <div class="terminal-box" id="sys-console">
+                        &gt; Initializing system...<br>
+                        &gt; FPS Engine loaded.<br>
+                        &gt; System online &amp; ready.<br>
+                        &gt; Welcome, XMLRIDZZ.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><span>🔗</span> QUICK LINKS</div>
+                    <div class="tools-grid">
+                        <a href="https://www.tiktok.com/@xmlridzz31mart?_r=1&_t=ZS-98qkpznkbRq" target="_blank" rel="noopener" class="tool-box">
+                            <span style="color:var(--neon-blue)">🎵</span>
+                            <div>TikTok</div>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6rPOiCnA7xJja22q0E" target="_blank" rel="noopener" class="tool-box">
+                            <span style="color:var(--terminal-green)">💬</span>
+                            <div>Saluran WA</div>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" class="tool-box">
+                            <span style="color:var(--accent-red)">▶️</span>
+                            <div>YouTube</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* =========================================================
+           TWEAKS MODULE — Mouse / Sensitivity / Touch
+           ========================================================= */
+        function toggleCardContent(contentId, checkbox) {
+            var contentEl = document.getElementById(contentId);
+            if (contentEl) contentEl.classList.toggle('show', checkbox.checked);
+        }
+
+        function setActiveInGroup(selector, btn) {
+            document.querySelectorAll(selector).forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+        }
+
+        function updateTouchSpeed(val, targetId) {
+            var speeds = ["Slow", "Normal", "Balanced", "High", "Ultra"];
+            var el = document.getElementById(targetId);
+            if (el) el.innerText = speeds[val - 1];
+        }
+
+        function initTweaksState() {
+            var pairs = [
+                ['check-mouse', 'mouse-content'],
+                ['check-sens', 'sens-content'],
+                ['check-touch', 'touch-content']
+            ];
+            pairs.forEach(function (pair) {
+                var checkbox = document.getElementById(pair[0]);
+                var content = document.getElementById(pair[1]);
+                if (checkbox && content) content.classList.toggle('show', checkbox.checked);
+            });
+        }
+
+        /* =========================================================
+           VIEW SWITCHER (MULTI-PAGE)
+           ========================================================= */
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+            var target = document.getElementById(id);
+            if (target) target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* =========================================================
+           TIMER UPTIME — FIX: interval tunggal, tidak pernah berhenti
+           ========================================================= */
+        var secondsElapsed = 0;
+        var uptimeTimer = null;
+        function startTimer() {
+            if (uptimeTimer) clearInterval(uptimeTimer);
+            uptimeTimer = setInterval(function () {
+                secondsElapsed++;
+                var h = Math.floor(secondsElapsed / 3600).toString().padStart(2, '0');
+                var m = Math.floor((secondsElapsed % 3600) / 60).toString().padStart(2, '0');
+                var s = (secondsElapsed % 60).toString().padStart(2, '0');
+                var elem = document.getElementById('val-uptime');
+                if (elem) elem.innerText = h + 'h ' + m + 'm ' + s + 's';
+            }, 1000);
+        }
+
+        /* =========================================================
+           FPS BOOSTER — target bisa diganti & angka berubah real-time
+           ========================================================= */
+        var targetFPS = 60;
+        var currentFPS = 60;
+        var stabilized = false;
+        var fpsRealtimeTimer = null;
+
+        function selectFPS(val, btn) {
+            targetFPS = val;
+            document.querySelectorAll('.btn-fps').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            var log = document.getElementById('fps-log');
+            if (log) log.innerHTML = "<span style='color:#ffcc00;'>[ Target diubah ke " + val + " FPS — menyesuaikan secara real-time... ]</span>";
+            logConsole('FPS target diubah ke ' + val + ' FPS.');
+        }
+
+        function fpsRealtimeLoop() {
+            if (fpsRealtimeTimer) clearInterval(fpsRealtimeTimer);
+            fpsRealtimeTimer = setInterval(function () {
+                if (currentFPS < targetFPS) {
+                    currentFPS += Math.max(1, Math.round((targetFPS - currentFPS) / 4));
+                    if (currentFPS > targetFPS) currentFPS = targetFPS;
+                } else if (currentFPS > targetFPS) {
+                    currentFPS -= Math.max(1, Math.round((currentFPS - targetFPS) / 4));
+                    if (currentFPS < targetFPS) currentFPS = targetFPS;
+                } else {
+                    var range = stabilized ? 1 : 3;
+                    var jitter = Math.floor(Math.random() * (range * 2 + 1)) - range;
+                    currentFPS = targetFPS + jitter;
+                    if (currentFPS < 1) currentFPS = 1;
+                }
+                var el = document.getElementById('fps-val');
+                if (el) el.innerText = currentFPS;
+            }, 350);
+        }
+
+        var fpsBoostTimeouts = [];
+        function boostFPS() {
+            var btn = document.getElementById('btn-fps-boost');
+            var log = document.getElementById('fps-log');
+            var badge = document.getElementById('fps-status');
+
+            btn.disabled = true;
+            btn.innerText = 'PROCESSING...';
+            stabilized = false;
+
+            log.innerHTML = "<span style='color:#ffcc00;'>[1/3] Bypassing GPU limiter...</span>";
+            logConsole('FPS Booster: bypassing GPU limiter...');
+            var t1 = setTimeout(function () {
+                log.innerHTML = "<span style='color:#00ccff;'>[2/3] Flushing RAM & shader cache...</span>";
+                logConsole('FPS Booster: flushing shader cache...');
+                var t2 = setTimeout(function () {
+                    log.innerHTML = "<span style='color:#33ff66;'>[3/3] Success! " + targetFPS + " FPS Overclock Engaged.</span>";
+                    badge.innerText = 'UNLOCKED';
+                    badge.style.background = '#33ff66';
+                    badge.style.color = '#000';
+                    stabilized = true;
+                    btn.disabled = false;
+                    btn.innerText = 'BOOST & UNLOCK MAX FPS';
+                    logConsole('FPS Booster: ' + targetFPS + ' FPS overclock engaged & stabil.');
+                }, 900);
+                fpsBoostTimeouts.push(t2);
+            }, 900);
+            fpsBoostTimeouts.push(t1);
+        }
+
+        /* =========================================================
+           MOD ENGINE SIMULATOR
+           ========================================================= */
+        function updateMod() {
+            var count = 0;
+            for (var i = 1; i <= 6; i++) {
+                var el = document.getElementById('c' + i);
+                if (el && el.checked) count++;
+            }
+            var log = document.getElementById('mod-log');
+            if (log) log.innerText = '[+] Active Features: ' + count + ' Selected';
+        }
+
+        var modInjectTimeouts = [];
+        function injectMod() {
+            var btn = document.getElementById('btn-mod-exec');
+            var log = document.getElementById('mod-log');
+            var badge = document.getElementById('cheat-status');
+
+            btn.disabled = true;
+            btn.innerText = 'INJECTING...';
+
+            log.innerHTML = "<span style='color:#ffcc00;'>[1/3] Allocating memory hooks...</span>";
+            logConsole('Mod Engine: allocating memory hooks...');
+            var t1 = setTimeout(function () {
+                log.innerHTML = "<span style='color:#00ccff;'>[2/3] Patching binary signatures...</span>";
+                logConsole('Mod Engine: patching binary signatures...');
+                var t2 = setTimeout(function () {
+                    log.innerHTML = "<span style='color:#33ff66;'>[3/3] Injection Success! Mod Engine Active.</span>";
+                    badge.innerText = 'ACTIVE';
+                    badge.style.background = '#33ff66';
+                    badge.style.color = '#000';
+                    btn.disabled = false;
+                    btn.innerText = 'EXECUTE BOOST & INJECTION';
+                    logConsole('Mod Engine: injeksi selesai, engine aktif.');
+                }, 900);
+                modInjectTimeouts.push(t2);
+            }, 900);
+            modInjectTimeouts.push(t1);
+        }
+
+        /* =========================================================
+           RESET SYSTEM — membersihkan total semua status
+           ========================================================= */
+        function resetSystem() {
+            // Batalkan proses BOOST / INJECT yang mungkin masih berjalan,
+            // supaya tidak menimpa kembali status setelah direset.
+            fpsBoostTimeouts.forEach(function (id) { clearTimeout(id); });
+            fpsBoostTimeouts = [];
+            modInjectTimeouts.forEach(function (id) { clearTimeout(id); });
+            modInjectTimeouts = [];
+
+            // --- Reset modul FPS Booster ---
+            targetFPS = 60;
+            currentFPS = 60;
+            stabilized = false;
+
+            document.querySelectorAll('.btn-fps').forEach(function (b) { b.classList.remove('active'); });
+            var fps60Btn = document.querySelector('.btn-fps');
+            if (fps60Btn) fps60Btn.classList.add('active');
+
+            var fpsValEl = document.getElementById('fps-val');
+            if (fpsValEl) fpsValEl.innerText = currentFPS;
+
+            var fpsBadge = document.getElementById('fps-status');
+            if (fpsBadge) {
+                fpsBadge.innerText = 'DEFAULT';
+                fpsBadge.style.background = '#222';
+                fpsBadge.style.color = '';
+            }
+
+            var fpsLog = document.getElementById('fps-log');
+            if (fpsLog) fpsLog.innerHTML = '[ FPS Engine Ready ]';
+
+            var fpsBtn = document.getElementById('btn-fps-boost');
+            if (fpsBtn) { fpsBtn.disabled = false; fpsBtn.innerText = 'BOOST & UNLOCK MAX FPS'; }
+
+            // --- Reset modul Mod Engine (semua checkbox ter-uncheck) ---
+            for (var i = 1; i <= 6; i++) {
+                var cb = document.getElementById('c' + i);
+                if (cb) cb.checked = false;
+            }
+            updateMod();
+
+            var modLog = document.getElementById('mod-log');
+            if (modLog) modLog.innerText = '[ Mod Engine Waiting... ]';
+
+            var cheatBadge = document.getElementById('cheat-status');
+            if (cheatBadge) {
+                cheatBadge.innerText = 'OFFLINE';
+                cheatBadge.style.background = '#222';
+                cheatBadge.style.color = '';
+            }
+
+            var modBtn = document.getElementById('btn-mod-exec');
+            if (modBtn) { modBtn.disabled = false; modBtn.innerText = 'EXECUTE BOOST & INJECTION'; }
+
+            var fovSlider = document.getElementById('fov-slider');
+            var fovVal = document.getElementById('fov-val');
+            if (fovSlider) fovSlider.value = 90;
+            if (fovVal) fovVal.innerText = '90%';
+
+            // --- Reset modul Tweaks (semua toggle default OFF) ---
+            var mouseCb = document.getElementById('check-mouse');
+            var sensCb = document.getElementById('check-sens');
+            var touchCb = document.getElementById('check-touch');
+            if (mouseCb) mouseCb.checked = false;
+            if (sensCb) sensCb.checked = false;
+            if (touchCb) touchCb.checked = false;
+            initTweaksState();
+            setActiveInGroup('#mouse-content .btn-mode', document.querySelectorAll('#mouse-content .btn-mode')[3]);
+            setActiveInGroup('#sens-content .btn-lvl', document.querySelectorAll('#sens-content .btn-lvl')[2]);
+            var singleRange = document.querySelector('#touch-content .range-container:first-child input[type="range"]');
+            var multiRange = document.querySelector('#touch-content .range-container:last-child input[type="range"]');
+            if (singleRange) { singleRange.value = 5; updateTouchSpeed(5, 'val-single'); }
+            if (multiRange) { multiRange.value = 5; updateTouchSpeed(5, 'val-multi'); }
+
+            // --- Reset console sistem ke kondisi awal ---
+            var sysConsole = document.getElementById('sys-console');
+            if (sysConsole) {
+                sysConsole.innerHTML =
+                    '&gt; Initializing system...<br>' +
+                    '&gt; FPS Engine loaded.<br>' +
+                    '&gt; System online &amp; ready.<br>' +
+                    '&gt; Welcome, XMLRIDZZ.';
+            }
+            logConsole('Semua status telah direset ke pengaturan awal.');
+        }
+
+        /* =========================================================
+           SYSTEM CONSOLE LOGGER
+           ========================================================= */
+        function logConsole(msg) {
+            var c = document.getElementById('sys-console');
+            if (!c) return;
+            var time = new Date().toLocaleTimeString();
+            c.innerHTML += '<br>&gt; [' + time + '] ' + msg;
+            c.scrollTop = c.scrollHeight;
+        }
+
+        /* =========================================================
+           DEVICE INFO DETECTION
+           ========================================================= */
+        function detectBrowser() {
+            var ua = navigator.userAgent;
+            if (ua.indexOf('Edg') > -1) return 'Edge';
+            if (ua.indexOf('OPR') > -1 || ua.indexOf('Opera') > -1) return 'Opera';
+            if (ua.indexOf('Chrome') > -1) return 'Chrome';
+            if (ua.indexOf('Firefox') > -1) return 'Firefox';
+            if (ua.indexOf('Safari') > -1) return 'Safari';
+            return 'Unknown';
+        }
+
+        function updateOrientation() {
+            var el = document.getElementById('val-orient');
+            if (el) el.innerText = window.innerWidth > window.innerHeight ? 'Landscape' : 'Portrait';
+        }
+
+        function detectDevice() {
+            var platEl = document.getElementById('dev-platform');
+            if (platEl) platEl.innerText = navigator.platform || 'Unknown';
+
+            var browEl = document.getElementById('dev-browser');
+            if (browEl) browEl.innerText = detectBrowser();
+
+            var resEl = document.getElementById('dev-res');
+            if (resEl) resEl.innerText = window.screen.width + 'x' + window.screen.height;
+
+            var colorEl = document.getElementById('dev-color');
+            if (colorEl) colorEl.innerText = (window.screen.colorDepth || 24) + '-bit';
+
+            var coresEl = document.getElementById('val-cores');
+            if (coresEl) coresEl.innerText = (navigator.hardwareConcurrency || 'N/A') + ' Threads';
+
+            updateOrientation();
+        }
+
+        function updateNetworkStatus() {
+            var el = document.getElementById('val-network');
+            if (!el) return;
+            if (navigator.onLine) {
+                el.innerText = 'ONLINE';
+                el.style.color = 'var(--terminal-green)';
+            } else {
+                el.innerText = 'OFFLINE';
+                el.style.color = 'var(--accent-red)';
+            }
+        }
+
+        window.addEventListener('resize', updateOrientation);
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        /* =========================================================
+           INIT — dijalankan begitu DOM siap
+           ========================================================= */
+        document.addEventListener('DOMContentLoaded', function () {
+            startTimer();
+            detectDevice();
+            updateNetworkStatus();
+            fpsRealtimeLoop();
+            updateMod();
+            initTweaksState();
+        });
+    </script>
+</body>
+</html>
