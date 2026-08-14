@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLRIDZZ — Cyberpunk Suite V23 ULTIMATE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg-color: #0a0612;
+            --surface-card: #120a1a;
+            --border-color: #2a1a3a;
+            --accent-red: #a855f7;
+            --accent-glow: rgba(168, 85, 247, 0.35);
+            --accent-gold: #f4a261;
+            --text-main: #e0d5f5;
+            --text-muted: #7a6a8a;
+            --terminal-green: #7dd3fc;
+            --neon-blue: #06b6d4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Share Tech Mono', monospace; }
+
+        body {
+            width: 100%; min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            background-image:
+                radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 70%),
+                linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 4px;
+            overflow-x: hidden;
+            padding-bottom: 30px;
+        }
+
+        /* HEADER NAVBAR */
+        header {
+            background: rgba(10, 6, 18, 0.96);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.08);
+        }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: 2px; cursor: pointer; background: none; border: none; }
+        .logo span { color: var(--accent-red); text-shadow: 0 0 10px var(--accent-glow); }
+
+        #status-badge { font-size: 0.6rem; color: var(--accent-red); border: 1px solid var(--accent-red); padding: 2px 6px; border-radius: 3px; transition: 0.2s; background: rgba(168, 85, 247, 0.1); box-shadow: 0 0 8px rgba(168, 85, 247, 0.2); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 15px; }
+
+        /* PAGE / VIEW SWITCHER */
+        .page { display: none; animation: fadeIn 0.35s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
+
+        .btn-back {
+            background: transparent; border: 1px solid var(--border-color); color: var(--text-muted);
+            padding: 8px 14px; font-size: 0.65rem; font-weight: bold; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px; border-radius: 3px; margin-bottom: 16px;
+            display: inline-flex; align-items: center; gap: 6px; transition: 0.3s;
+        }
+        .btn-back:hover { border-color: var(--accent-red); color: #fff; background: rgba(168,85,247,0.15); }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: #fff; letter-spacing: 1px;
+            margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+        }
+        .page-title span.ico { color: var(--accent-red); }
+
+        /* HERO SECTION DENGAN LOGO X RAKSASA */
+        .hero {
+            position: relative;
+            padding: 50px 20px;
+            text-align: center;
+            background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 80%);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.08);
+        }
+
+        .hero::before {
+            content: 'X';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18rem;
+            font-weight: 900;
+            color: rgba(168, 85, 247, 0.08);
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.18);
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+        .hero-tag { font-size: 0.65rem; color: var(--accent-red); letter-spacing: 2px; margin-bottom: 10px; }
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: 2.8rem; font-weight: 900; color: #fff; letter-spacing: 4px; line-height: 1.1; }
+        .hero-title span { color: var(--accent-red); text-shadow: 0 0 15px var(--accent-red); }
+        .hero-sub { color: var(--accent-red); font-size: 0.85rem; letter-spacing: 3px; margin: 12px 0 8px; font-weight: bold; }
+        .hero-desc { color: var(--text-muted); font-size: 0.75rem; max-width: 500px; margin: 0 auto 20px; }
+
+        .hero-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .btn-hero {
+            background: transparent; border: 1px solid var(--accent-red);
+            color: #fff; padding: 10px 18px; font-size: 0.7rem; font-weight: bold;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border-radius: 3px;
+            text-decoration: none; display: inline-block; transition: 0.3s;
+        }
+        .btn-hero.active { background: var(--accent-red); color: #fff; box-shadow: 0 0 16px rgba(168, 85, 247, 0.5), 0 0 28px rgba(168, 85, 247, 0.2); }
+        .btn-hero:hover { background: rgba(168,85,247,0.18); border-color: var(--accent-red); }
+
+        /* NAV CARDS (MENU FITUR) */
+        .section-label { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 2px; margin: 22px 0 10px; text-transform: uppercase; }
+        .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-bottom: 10px; }
+        .nav-card {
+            background: var(--surface-card); border: 1px solid var(--border-color); border-radius: 5px;
+            padding: 16px; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.08);
+        }
+        .nav-card:hover { border-color: var(--accent-red); box-shadow: 0 0 22px rgba(168,85,247,0.28), 0 0 40px rgba(168,85,247,0.12); transform: translateY(-3px); }
+        .nav-card .nc-icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+        .nav-card .nc-title { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: #fff; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .nav-card .nc-desc { font-size: 0.65rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px; }
+        .nav-card .nc-open { font-size: 0.6rem; color: var(--accent-red); font-weight: bold; letter-spacing: 1px; }
+
+        /* GRID SYSTEM */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 20px; }
+
+        /* CARD STYLE */
+        .card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            padding: 14px; border-radius: 4px;
+            position: relative; margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.06);
+        }
+        .card-header {
+            font-family: 'Orbitron', sans-serif; font-size: 0.75rem; color: #fff;
+            margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid #14141e; padding-bottom: 6px;
+        }
+        .card-header span { color: var(--accent-red); }
+        .card-header .badge { color: #888; }
+
+        /* FPS DISPLAY BOX */
+        .fps-display-box {
+            background: rgba(20, 10, 30, 0.6);
+            border: 1px solid var(--accent-red);
+            padding: 12px;
+            text-align: center;
+            border-radius: 3px;
+            margin-bottom: 12px;
+            box-shadow: inset 0 0 12px rgba(168, 85, 247, 0.15), 0 0 15px rgba(168, 85, 247, 0.1);
+        }
+        .fps-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #7dd3fc;
+            text-shadow: 0 0 14px rgba(125, 211, 252, 0.6), 0 0 28px rgba(168, 85, 247, 0.3);
+            transition: color 0.2s;
+        }
+        .fps-mode-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .btn-fps {
+            background: rgba(20, 10, 30, 0.5);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 0;
+            font-size: 0.65rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        .btn-fps.active {
+            border-color: var(--accent-red);
+            color: #fff;
+            background: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
+        }
+
+        /* MOD ENGINE STYLES */
+        .mod-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px; }
+        @media(min-width: 500px) { .mod-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .mod-item {
+            background: rgba(20, 10, 30, 0.5); border: 1px solid var(--border-color); padding: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.75rem; color: #fff; border-radius: 3px;
+            transition: 0.2s;
+        }
+        .mod-item:hover { border-color: rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.08); }
+        .mod-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent-red); cursor: pointer; }
+
+        .btn-act {
+            background: var(--accent-red); color: #fff; border: none;
+            padding: 12px; font-size: 0.8rem; font-weight: bold; width: 100%;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border-radius: 3px;
+            box-shadow: 0 0 14px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(255,255,255,0.1); transition: 0.2s;
+        }
+        .btn-act:active { background: rgba(168, 85, 247, 0.8); transform: scale(0.97); box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
+        .btn-act:disabled { background: #2a2a3a; color: #666; cursor: not-allowed; box-shadow: none; }
+
+        /* QUICK TOOLS */
+        .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+        .tool-box {
+            background: rgba(20, 10, 30, 0.5); border: 1px solid var(--border-color); padding: 10px 4px;
+            border-radius: 3px; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block;
+        }
+        .tool-box:hover { border-color: var(--accent-red); background: rgba(168,85,247,0.12); box-shadow: 0 0 12px rgba(168, 85, 247, 0.2); }
+        .tool-box div { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
+
+        .perf-line { height: 30px; background: repeating-linear-gradient(90deg, rgba(168,85,247,0.25) 0 2px, transparent 2px 8px); margin-bottom: 10px; border-bottom: 1px solid var(--accent-red); box-shadow: inset 0 0 8px rgba(168, 85, 247, 0.15); }
+        .stat-row { display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 6px; color: var(--text-muted); }
+        .stat-row b { color: #fff; max-width: 140px; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        .terminal-box {
+            background: rgba(10, 6, 18, 0.8); border: 1px solid rgba(168, 85, 247, 0.3);
+            color: #7dd3fc; padding: 8px; font-size: 0.65rem;
+            height: 90px; overflow-y: auto; line-height: 1.4;
+            box-shadow: inset 0 0 8px rgba(168, 85, 247, 0.1);
+        }
+
+        footer {
+            border-top: 1px solid rgba(168, 85, 247, 0.2); padding: 20px 0 10px;
+            text-align: center; font-size: 0.65rem; color: var(--text-muted); margin-top: 20px;
+        }
+
+        @media(max-width: 600px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero::before { font-size: 13rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR HEADER -->
+    <header>
+        <button class="logo" onclick="showPage('page-home')">XML<span>RIDZZ</span></button>
+        <div id="status-badge">STATUS: ONLINE</div>
+    </header>
+
+    <div class="container">
+
+        <!-- =============================== -->
+        <!-- HALAMAN BERANDA -->
+        <!-- =============================== -->
+        <div class="page active" id="page-home">
+
+            <!-- HERO BANNER DENGAN SALURAN WA & TIKTOK -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-tag">// SYSTEM INITIATED</div>
+                    <div class="hero-title">XML<span>RIDZZ</span></div>
+                    <div class="hero-sub">EXPLORE • MAKE • LEARN</div>
+                    <div class="hero-desc">I build digital experiences, explore technologies, and keep learning every day.</div>
+
+                    <div class="hero-btns">
+                        <a href="https://whatsapp.com/channel/0029Vb6rPOiCnA7xJja22q0E" target="_blank" rel="noopener" class="btn-hero active">SALURAN WA &rarr;</a>
+                        <a href="https://www.tiktok.com/@xmlridzz31mart?_r=1&_t=ZS-98qkpznkbRq" target="_blank" rel="noopener" class="btn-hero">TIKTOK ME</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MENU NAVIGASI FITUR -->
+            <div class="section-label">// PILIH MODUL FITUR</div>
+            <div class="nav-grid">
+                <div class="nav-card" onclick="showPage('page-fps')">
+                    <span class="nc-icon">⚡</span>
+                    <div class="nc-title">ULTRA FPS BOOSTER & OVERCLOCK</div>
+                    <div class="nc-desc">Atur target frame rate (60/90/120/144 MAX) dan pantau FPS real-time.</div>
+                    <div class="nc-open">BUKA MODUL &rarr;</div>
+                </div>
+                <div class="nav-card" onclick="showPage('page-mod')">
+                    <span class="nc-icon">🎯</span>
+                    <div class="nc-title">GAME BOOST & MOD ENGINE SIMULATOR</div>
+                    <div class="nc-desc">Simulasi konfigurasi mod & injeksi fitur boost permainan.</div>
+                    <div class="nc-open">BUKA MODUL &rarr;</div>
+                </div>
+                <div class="nav-card" onclick="showPage('page-monitor')">
+                    <span class="nc-icon">🖥️</span>
+                    <div class="nc-title">PERFORMANCE & DEVICE MONITOR</div>
+                    <div class="nc-desc">Uptime, spesifikasi perangkat, dan console log sistem secara langsung.</div>
+                    <div class="nc-open">BUKA MODUL &rarr;</div>
+                </div>
+            </div>
+
+            <div class="section-label">// QUICK LINKS</div>
+            <div class="card">
+                <div class="tools-grid">
+                    <a href="https://www.tiktok.com/@xmlridzz31mart?_r=1&_t=ZS-98qkpznkbRq" target="_blank" rel="noopener" class="tool-box">
+                        <span style="color:var(--neon-blue)">🎵</span>
+                        <div>TikTok</div>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb6rPOiCnA7xJja22q0E" target="_blank" rel="noopener" class="tool-box">
+                        <span style="color:var(--terminal-green)">💬</span>
+                        <div>Saluran WA</div>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener" class="tool-box">
+                        <span style="color:var(--accent-red)">▶️</span>
+                        <div>YouTube</div>
+                    </a>
+                </div>
+            </div>
+
+            <footer>
+                <div style="margin-bottom: 5px;">© 2026 XMLRIDZZ. All rights reserved.</div>
+                <div style="color: var(--accent-red); font-weight: bold;">KEEP CODING. KEEP LEARNING. NEVER STOP.</div>
+            </footer>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: FPS BOOSTER -->
+        <!-- =============================== -->
+        <div class="page" id="page-fps">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">⚡</span> ULTRA FPS BOOSTER & OVERCLOCK</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span>⚡</span> ENGINE STATUS
+                    <span id="fps-status" class="badge" style="background:#222; padding:2px 6px; font-size:0.6rem;">DEFAULT</span>
+                </div>
+
+                <div class="fps-display-box">
+                    <div style="font-size:0.6rem; color:var(--text-muted); margin-bottom:4px;">REALTIME ESTIMATED FPS</div>
+                    <div class="fps-num"><span id="fps-val">60</span> <span style="font-size:1rem; color:#888;">FPS</span></div>
+                </div>
+
+                <div style="font-size:0.65rem; color:#aaa; margin-bottom:6px;">SELECT TARGET FRAME RATE:</div>
+                <div class="fps-mode-selector">
+                    <button class="btn-fps active" onclick="selectFPS(60, this)">60 FPS</button>
+                    <button class="btn-fps" onclick="selectFPS(90, this)">90 FPS</button>
+                    <button class="btn-fps" onclick="selectFPS(120, this)">120 FPS</button>
+                    <button class="btn-fps" onclick="selectFPS(144, this)">144 MAX</button>
+                </div>
+
+                <button class="btn-act" id="btn-fps-boost" style="background:var(--neon-blue); color:#000;" onclick="boostFPS()">BOOST & UNLOCK MAX FPS</button>
+                <div class="terminal-box" id="fps-log" style="height:45px; margin-top:8px;">[ FPS Engine Ready ]</div>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: MOD ENGINE -->
+        <!-- =============================== -->
+        <div class="page" id="page-mod">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">🎯</span> GAME BOOST & MOD ENGINE SIMULATOR</div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span>🎯</span> MOD CONFIGURATION
+                    <span id="cheat-status" class="badge" style="background:#222; padding:2px 6px; font-size:0.6rem;">OFFLINE</span>
+                </div>
+
+                <div class="mod-grid">
+                    <label class="mod-item">
+                        <span>🎯 AimLock Target Assist</span>
+                        <input type="checkbox" id="c1" checked onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>⚡ Ultra FPS Mode Simulation</span>
+                        <input type="checkbox" id="c2" checked onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>🌐 Ping Stabilizer Bypass</span>
+                        <input type="checkbox" id="c3" checked onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>👻 Hologram Overlay Simulator</span>
+                        <input type="checkbox" id="c4" onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>📡 Touch Response Optimizer</span>
+                        <input type="checkbox" id="c5" onchange="updateMod()">
+                    </label>
+                    <label class="mod-item">
+                        <span>🛡️ Anti-Lag Memory Purge</span>
+                        <input type="checkbox" id="c6" checked onchange="updateMod()">
+                    </label>
+                </div>
+
+                <div style="margin-bottom:12px; background:rgba(20, 10, 30, 0.6); padding:10px; border:1px solid rgba(168, 85, 247, 0.3); box-shadow: inset 0 0 8px rgba(168, 85, 247, 0.08);">
+                    <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#aaa; margin-bottom:5px;">
+                        <span>AIM ASSIST FOV RATIO</span>
+                        <span id="fov-val" style="color:#7dd3fc; font-weight:bold; text-shadow: 0 0 8px rgba(125, 211, 252, 0.4);">90%</span>
+                    </div>
+                    <input type="range" min="10" max="100" value="90" style="width:100%; accent-color:var(--accent-red);" oninput="document.getElementById('fov-val').innerText = this.value + '%'">
+                </div>
+
+                <button class="btn-act" id="btn-mod-exec" onclick="injectMod()">EXECUTE BOOST & INJECTION</button>
+                <div class="terminal-box" id="mod-log" style="height:45px; margin-top:8px;">[ Mod Engine Waiting... ]</div>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- HALAMAN: PERFORMANCE MONITOR -->
+        <!-- =============================== -->
+        <div class="page" id="page-monitor">
+            <button class="btn-back" onclick="showPage('page-home')">&larr; KEMBALI KE BERANDA</button>
+            <div class="page-title"><span class="ico">🖥️</span> PERFORMANCE & DEVICE MONITOR</div>
+
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-header"><span>f</span> PERFORMANCE MONITOR</div>
+                    <div class="perf-line"></div>
+                    <div class="stat-row"><span>UPTIME</span><b id="val-uptime">00h 00m 00s</b></div>
+                    <div class="stat-row"><span>CPU THREADS</span><b id="val-cores">Detecting...</b></div>
+                    <div class="stat-row"><span>ORIENTATION</span><b id="val-orient">Portrait</b></div>
+                    <div class="stat-row"><span>NETWORK</span><b id="val-network" style="color:var(--terminal-green)">ONLINE</b></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><span>f</span> YOUR DEVICE INFO</div>
+                    <div class="stat-row"><span>PLATFORM</span><b id="dev-platform" style="color:var(--neon-blue)">Detecting...</b></div>
+                    <div class="stat-row"><span>BROWSER</span><b id="dev-browser">Detecting...</b></div>
+                    <div class="stat-row"><span>RESOLUTION</span><b id="dev-res">0x0</b></div>
+                    <div class="stat-row"><span>COLOR DEPTH</span><b id="dev-color">24-bit</b></div>
+                    <div class="stat-row"><span>SYSTEM STATE</span><b style="color:var(--terminal-green)">OPTIMAL</b></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><span>f</span> SYSTEM CONSOLE</div>
+                    <div class="terminal-box" id="sys-console">
+                        &gt; Initializing system...<br>
+                        &gt; FPS Engine loaded.<br>
+                        &gt; System online &amp; ready.<br>
+                        &gt; Welcome, XMLRIDZZ.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><span>f</span> QUICK LINKS</div>
+                    <div class="tools-grid">
+                        <a href="https://www.tiktok.com/@xmlridzz31mart?_r=1&_t=ZS-98qkpznkbRq" target="_blank" rel="noopener" class="tool-box">
+                            <span style="color:var(--neon-blue)">🎵</span>
+                            <div>TikTok</div>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6rPOiCnA7xJja22q0E" target="_blank" rel="noopener" class="tool-box">
+                            <span style="color:var(--terminal-green)">💬</span>
+                            <div>Saluran WA</div>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" class="tool-box">
+                            <span style="color:var(--accent-red)">▶️</span>
+                            <div>YouTube</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* =========================================================
+           VIEW SWITCHER (MULTI-PAGE)
+           ========================================================= */
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
+            var target = document.getElementById(id);
+            if (target) target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* =========================================================
+           TIMER UPTIME — FIX: interval tunggal, tidak pernah berhenti
+           ========================================================= */
+        var secondsElapsed = 0;
+        function startTimer() {
+            setInterval(function () {
+                secondsElapsed++;
+                var h = Math.floor(secondsElapsed / 3600).toString().padStart(2, '0');
+                var m = Math.floor((secondsElapsed % 3600) / 60).toString().padStart(2, '0');
+                var s = (secondsElapsed % 60).toString().padStart(2, '0');
+                var elem = document.getElementById('val-uptime');
+                if (elem) elem.innerText = h + 'h ' + m + 'm ' + s + 's';
+            }, 1000);
+        }
+
+        /* =========================================================
+           FPS BOOSTER — target bisa diganti & angka berubah real-time
+           ========================================================= */
+        var targetFPS = 60;
+        var currentFPS = 60;
+        var stabilized = false;
+        var fpsRealtimeTimer = null;
+
+        function selectFPS(val, btn) {
+            targetFPS = val;
+            document.querySelectorAll('.btn-fps').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            var log = document.getElementById('fps-log');
+            if (log) log.innerHTML = "<span style='color:#ffcc00;'>[ Target diubah ke " + val + " FPS — menyesuaikan secara real-time... ]</span>";
+            logConsole('FPS target diubah ke ' + val + ' FPS.');
+        }
+
+        function fpsRealtimeLoop() {
+            if (fpsRealtimeTimer) clearInterval(fpsRealtimeTimer);
+            fpsRealtimeTimer = setInterval(function () {
+                if (currentFPS < targetFPS) {
+                    currentFPS += Math.max(1, Math.round((targetFPS - currentFPS) / 4));
+                    if (currentFPS > targetFPS) currentFPS = targetFPS;
+                } else if (currentFPS > targetFPS) {
+                    currentFPS -= Math.max(1, Math.round((currentFPS - targetFPS) / 4));
+                    if (currentFPS < targetFPS) currentFPS = targetFPS;
+                } else {
+                    var range = stabilized ? 1 : 3;
+                    var jitter = Math.floor(Math.random() * (range * 2 + 1)) - range;
+                    currentFPS = targetFPS + jitter;
+                    if (currentFPS < 1) currentFPS = 1;
+                }
+                var el = document.getElementById('fps-val');
+                if (el) el.innerText = currentFPS;
+            }, 350);
+        }
+
+        function boostFPS() {
+            var btn = document.getElementById('btn-fps-boost');
+            var log = document.getElementById('fps-log');
+            var badge = document.getElementById('fps-status');
+
+            btn.disabled = true;
+            btn.innerText = 'PROCESSING...';
+            stabilized = false;
+
+            log.innerHTML = "<span style='color:#ffcc00;'>[1/3] Bypassing GPU limiter...</span>";
+            logConsole('FPS Booster: bypassing GPU limiter...');
+            setTimeout(function () {
+                log.innerHTML = "<span style='color:#00ccff;'>[2/3] Flushing RAM & shader cache...</span>";
+                logConsole('FPS Booster: flushing shader cache...');
+                setTimeout(function () {
+                    log.innerHTML = "<span style='color:#33ff66;'>[3/3] Success! " + targetFPS + " FPS Overclock Engaged.</span>";
+                    badge.innerText = 'UNLOCKED';
+                    badge.style.background = '#33ff66';
+                    badge.style.color = '#000';
+                    stabilized = true;
+                    btn.disabled = false;
+                    btn.innerText = 'BOOST & UNLOCK MAX FPS';
+                    logConsole('FPS Booster: ' + targetFPS + ' FPS overclock engaged & stabil.');
+                }, 900);
+            }, 900);
+        }
+
+        /* =========================================================
+           MOD ENGINE SIMULATOR
+           ========================================================= */
+        function updateMod() {
+            var count = 0;
+            for (var i = 1; i <= 6; i++) {
+                var el = document.getElementById('c' + i);
+                if (el && el.checked) count++;
+            }
+            var log = document.getElementById('mod-log');
+            if (log) log.innerText = '[+] Active Features: ' + count + ' Selected';
+        }
+
+        function injectMod() {
+            var btn = document.getElementById('btn-mod-exec');
+            var log = document.getElementById('mod-log');
+            var badge = document.getElementById('cheat-status');
+
+            btn.disabled = true;
+            btn.innerText = 'INJECTING...';
+
+            log.innerHTML = "<span style='color:#ffcc00;'>[1/3] Allocating memory hooks...</span>";
+            logConsole('Mod Engine: allocating memory hooks...');
+            setTimeout(function () {
+                log.innerHTML = "<span style='color:#00ccff;'>[2/3] Patching binary signatures...</span>";
+                logConsole('Mod Engine: patching binary signatures...');
+                setTimeout(function () {
+                    log.innerHTML = "<span style='color:#33ff66;'>[3/3] Injection Success! Mod Engine Active.</span>";
+                    badge.innerText = 'ACTIVE';
+                    badge.style.background = '#33ff66';
+                    badge.style.color = '#000';
+                    btn.disabled = false;
+                    btn.innerText = 'EXECUTE BOOST & INJECTION';
+                    logConsole('Mod Engine: injeksi selesai, engine aktif.');
+                }, 900);
+            }, 900);
+        }
+
+        /* =========================================================
+           SYSTEM CONSOLE LOGGER
+           ========================================================= */
+        function logConsole(msg) {
+            var c = document.getElementById('sys-console');
+            if (!c) return;
+            var time = new Date().toLocaleTimeString();
+            c.innerHTML += '<br>&gt; [' + time + '] ' + msg;
+            c.scrollTop = c.scrollHeight;
+        }
+
+        /* =========================================================
+           DEVICE INFO DETECTION
+           ========================================================= */
+        function detectBrowser() {
+            var ua = navigator.userAgent;
+            if (ua.indexOf('Edg') > -1) return 'Edge';
+            if (ua.indexOf('OPR') > -1 || ua.indexOf('Opera') > -1) return 'Opera';
+            if (ua.indexOf('Chrome') > -1) return 'Chrome';
+            if (ua.indexOf('Firefox') > -1) return 'Firefox';
+            if (ua.indexOf('Safari') > -1) return 'Safari';
+            return 'Unknown';
+        }
+
+        function updateOrientation() {
+            var el = document.getElementById('val-orient');
+            if (el) el.innerText = window.innerWidth > window.innerHeight ? 'Landscape' : 'Portrait';
+        }
+
+        function detectDevice() {
+            var platEl = document.getElementById('dev-platform');
+            if (platEl) platEl.innerText = navigator.platform || 'Unknown';
+
+            var browEl = document.getElementById('dev-browser');
+            if (browEl) browEl.innerText = detectBrowser();
+
+            var resEl = document.getElementById('dev-res');
+            if (resEl) resEl.innerText = window.screen.width + 'x' + window.screen.height;
+
+            var colorEl = document.getElementById('dev-color');
+            if (colorEl) colorEl.innerText = (window.screen.colorDepth || 24) + '-bit';
+
+            var coresEl = document.getElementById('val-cores');
+            if (coresEl) coresEl.innerText = (navigator.hardwareConcurrency || 'N/A') + ' Threads';
+
+            updateOrientation();
+        }
+
+        function updateNetworkStatus() {
+            var el = document.getElementById('val-network');
+            if (!el) return;
+            if (navigator.onLine) {
+                el.innerText = 'ONLINE';
+                el.style.color = 'var(--terminal-green)';
+            } else {
+                el.innerText = 'OFFLINE';
+                el.style.color = 'var(--accent-red)';
+            }
+        }
+
+        window.addEventListener('resize', updateOrientation);
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        /* =========================================================
+           INIT — dijalankan begitu DOM siap
+           ========================================================= */
+        document.addEventListener('DOMContentLoaded', function () {
+            startTimer();
+            detectDevice();
+            updateNetworkStatus();
+            fpsRealtimeLoop();
+            updateMod();
+        });
+    </script>
+</body>
+</html>
